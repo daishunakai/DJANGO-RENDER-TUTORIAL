@@ -11,6 +11,7 @@ services:
     name: django_render
     env: python
     branch: main
+    region: singapore
     healthCheckPath: /
     buildCommand: "./build.sh"
     startCommand: "gunicorn mysite.wsgi:application"    
