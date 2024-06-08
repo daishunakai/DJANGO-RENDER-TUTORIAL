@@ -14,8 +14,8 @@ from pathlib import Path
 import os
 import environ
 from decouple import config
-from dj_database_url import parse as dburl
-
+#from dj_database_url import parse as dburl
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -88,10 +88,14 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 #        'NAME': BASE_DIR / 'db.sqlite3',
 #    }
 #}
-default_dburl = "sqlite:///" + str(BASE_DIR / "db.sqlite3")
+#default_dburl = "sqlite:///" + str(BASE_DIR / "db.sqlite3")
 
+#DATABASES = {
+#    "default": config("DATABASE_URL", default=default_dburl, cast=dburl ),
+#}
 DATABASES = {
-    "default": config("DATABASE_URL", default=default_dburl, cast=dburl ),
+    'default':dj_database_url.config(default='postgres://django_user:iIiX7D8EoJMAgLj1DIoDZvMWc6fxpcJZ@dpg-cp4d6d8cmk4c73eic5jg-a:5432/django_render_db_6n80',conn_max_age=600
+    )
 }
 
 
